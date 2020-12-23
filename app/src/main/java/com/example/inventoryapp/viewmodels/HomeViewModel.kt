@@ -19,6 +19,116 @@ class HomeViewModel : ViewModel() {
         _products.value?.add(product)
     }
 
+    fun createDummyData() {
+        val dummyData = ArrayList<ProductModel>()
+        dummyData.add(ProductModel("shoes", "Nike", "footwear", "well known brand for apparel "))
+        dummyData.add(ProductModel("Shirts", "Arrow", "Cloths", "nice qulality shirts"))
+        dummyData.add(
+            ProductModel(
+                "Jeans",
+                "World-O-Jeans",
+                "bottom wear",
+                "most populat bottom wear"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Cap",
+                "Decathlon",
+                "Essentials apparel",
+                "variety of caps and hats"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Spectacles",
+                "EyeWear",
+                "Essentials apparel",
+                "shades to protect your eye"
+            )
+        )
+        dummyData.add(ProductModel("shoes", "Nike", "footwear", "well known brand for apparel "))
+        dummyData.add(ProductModel("Shirts", "Arrow", "Cloths", "nice qulality shirts"))
+        dummyData.add(
+            ProductModel(
+                "Jeans",
+                "World-O-Jeans",
+                "bottom wear",
+                "most populat bottom wear"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Cap",
+                "Decathlon",
+                "Essentials apparel",
+                "variety of caps and hats"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Spectacles",
+                "EyeWear",
+                "Essentials apparel",
+                "shades to protect your eye"
+            )
+        )
+        dummyData.add(ProductModel("shoes", "Nike", "footwear", "well known brand for apparel "))
+        dummyData.add(ProductModel("Shirts", "Arrow", "Cloths", "nice qulality shirts"))
+        dummyData.add(
+            ProductModel(
+                "Jeans",
+                "World-O-Jeans",
+                "bottom wear",
+                "most populat bottom wear"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Cap",
+                "Decathlon",
+                "Essentials apparel",
+                "variety of caps and hats"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Spectacles",
+                "EyeWear",
+                "Essentials apparel",
+                "shades to protect your eye"
+            )
+        )
+        dummyData.add(ProductModel("shoes", "Nike", "footwear", "well known brand for apparel "))
+        dummyData.add(ProductModel("Shirts", "Arrow", "Cloths", "nice qulality shirts"))
+        dummyData.add(
+            ProductModel(
+                "Jeans",
+                "World-O-Jeans",
+                "bottom wear",
+                "most populat bottom wear"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Cap",
+                "Decathlon",
+                "Essentials apparel",
+                "variety of caps and hats"
+            )
+        )
+        dummyData.add(
+            ProductModel(
+                "Spectacles",
+                "EyeWear",
+                "Essentials apparel",
+                "shades to protect your eye "
+            )
+        )
+
+        _products.value?.addAll(dummyData)
+    }
+
     override fun onCleared() {
         super.onCleared()
     }

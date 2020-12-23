@@ -32,4 +32,5 @@
     <string name="hello_instructions_text">Hello </string>
     <string name="no_item_label_text">There are no products yet!\n\n:(</string>
     <string name="label_product_name">Product name:</string>
+    <string name="add_product">Add Product</string>
 </resources>
