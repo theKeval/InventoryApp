@@ -33,4 +33,8 @@
     <string name="no_item_label_text">There are no products yet!\n\n:(</string>
     <string name="label_product_name">Product name:</string>
     <string name="add_product">Add Product</string>
+    <string name="hint_product_name">Product Name</string>
+    <string name="hint_product_description">Product Description</string>
+    <string name="hint_product_category">Product Category</string>
+    <string name="hint_product_company">Product Company</string>
 </resources>

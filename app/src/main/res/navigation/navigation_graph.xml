@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemDetailFragment"
-        android:name="com.example.inventoryapp.screens.ItemDetailFragment"
+        android:name="com.example.inventoryapp.screens.ItemDetailsFragment"
         android:label="Product Detail">
         <argument
             android:name="product_model"
