@@ -9,4 +9,26 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="label_email">Email</string>
+    <string name="field_email_hint">Enter email address</string>
+    <string name="email_autoFillHints">emailAddress</string>
+    <string name="field_password_hint">Enter Password</string>
+    <string name="label_password">Password</string>
+    <string name="password_autoFillHints">password</string>
+    <string name="text_login_btn">Login</string>
+    <string name="onboarding_header_lable">Hello and Welcome to the Inventory App</string>
+    <string name="label_content_text">This application will help you manage inventory of your products.</string>
+    <string name="label_content_second_text">Please Enter your name and proceed further for instructions how to use this application.</string>
+    <string name="btn_next_text">Next</string>
+    <string name="hint_field_name">Name</string>
+    <string name="instruction_header_text">This application have 3 basic features as follows:</string>
+    <string name="instructions_text">
+        \u25CF  You can view products that you added in the catalog in the Inventory screen
+        \n\n
+        \u25CF  You can add new products by clicking on the "Plus" button on the bottom right corner in the Inventory screen
+        \n\n
+        \u25CF  You can View or Edit the details of the product you added
+    </string>
+    <string name="hello_instructions_text">Hello </string>
+    <string name="no_item_label_text">There are no products yet!\n\n:(</string>
 </resources>
