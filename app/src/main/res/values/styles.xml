@@ -12,6 +12,11 @@
         <item name="android:textAlignment">viewStart</item>
     </style>
 
+    <style name="label_style.productListing">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
     <style name="field_style">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/black</item>
@@ -25,6 +30,14 @@
         <item name="android:paddingRight">32dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="linearLayout_products_style">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@color/myGray</item>
     </style>
 
 </resources>
