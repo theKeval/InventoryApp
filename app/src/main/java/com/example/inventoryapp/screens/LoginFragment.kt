@@ -1,6 +1,7 @@
 package com.example.inventoryapp.screens
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,8 @@ class LoginFragment: Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.btnLogin.setOnClickListener {
             it.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOnboardingFragment())
+            // binding.fieldEmail.text = Editable.Factory().newEditable("")
+            // binding.fieldPassword.text = Editable.Factory().newEditable("")
         }
 
         // return super.onCreateView(inflater, container, savedInstanceState)

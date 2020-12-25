@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -27,8 +28,13 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         navController = this.findNavController(R.id.nav_host_fragment)
-
         NavigationUI.setupActionBarWithNavController(this, navController)
+
+        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+//            if(nd.id == nc.graph.startDestination) {
+//
+//            }
+        }
 
     }
 

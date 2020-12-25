@@ -14,8 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.FragmentItemListingBinding
 import com.example.inventoryapp.models.ProductModel
@@ -58,10 +60,19 @@ class ItemListingFragment : Fragment() {
             )
         }
 
-        // homeViewModel.createDummyData()
-
         setHasOptionsMenu(true)
         return binding.root
+
+        // region commented code for future references
+
+        // homeViewModel.createDummyData()
+
+//        AppBarConfiguration.OnNavigateUpListener {
+//            activity?.finish()
+//            true
+//        }
+
+        // endregion
     }
 
     private fun addProductUI(product: ProductModel) {
@@ -129,7 +140,9 @@ class ItemListingFragment : Fragment() {
     }
 
     private fun logout() {
-        val done = findNavController().popBackStack(R.id.loginFragment, false)
+        // val done = findNavController().popBackStack(R.id.loginFragment, false)
+        val done = findNavController().navigate(ItemListingFragmentDirections.actionItemListingFragmentToLoginFragment())
+
         Timber.i("logout done?: $done")
     }
 
