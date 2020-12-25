@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="itemDetailViewModel"
             type="com.example.inventoryapp.viewmodels.ItemDetailsViewModel" />
@@ -44,10 +45,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_regular"
+                        android:autofillHints="Product"
                         android:ems="10"
                         android:hint="@string/hint_product_name"
-                        android:autofillHints="Product"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:text="@{itemDetailViewModel.product.itemName}" />
 
                 </LinearLayout>
 
@@ -72,10 +74,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_regular"
+                        android:autofillHints="Company"
                         android:ems="10"
                         android:hint="@string/hint_product_company"
-                        android:autofillHints="Company"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:text="@{itemDetailViewModel.product.itemCompany}" />
 
                 </LinearLayout>
 
@@ -100,10 +103,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_regular"
+                        android:autofillHints="Category"
                         android:ems="10"
                         android:hint="@string/hint_product_category"
-                        android:autofillHints="Category"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:text="@{itemDetailViewModel.product.itemCategory}" />
 
                 </LinearLayout>
 
@@ -131,9 +135,54 @@
                         android:autofillHints="Description"
                         android:ems="10"
                         android:hint="@string/hint_product_description"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:text="@{itemDetailViewModel.product.itemDescription}" />
 
                 </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/margin_regular"
+                    android:paddingBottom="@dimen/margin_regular">
+
+                    <Button
+                        android:id="@+id/btn_product_detail_cancel"
+                        style="@style/button_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_large"
+                        android:text="@string/btn_text_cancel"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/btn_product_detail_save"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_product_detail_save"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_product_detail_save"
+                        style="@style/button_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/btn_text_save"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/btn_product_detail_cancel"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_product_detail_delete"
+                        style="@style/button_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/btn_text_delete"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_product_detail_save" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
         </ScrollView>

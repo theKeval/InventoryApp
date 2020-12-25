@@ -37,4 +37,10 @@
     <string name="hint_product_description">Product Description</string>
     <string name="hint_product_category">Product Category</string>
     <string name="hint_product_company">Product Company</string>
+    <string name="btn_text_cancel">Cancel</string>
+    <string name="btn_text_save">Save</string>
+    <string name="btn_text_delete">Delete</string>
+    <string name="error_saving">Unable to save Product :(</string>
+    <string name="error_deleting">Unable to delete Product</string>
+    <string name="btn_text_update">Update</string>
 </resources>
