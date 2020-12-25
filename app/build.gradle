@@ -59,6 +59,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     // implementation 'androidx.navigation:navigation-compose:1.0.0-alpha04'
 
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
     // ..
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

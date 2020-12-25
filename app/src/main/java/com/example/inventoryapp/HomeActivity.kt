@@ -28,14 +28,15 @@ class HomeActivity : AppCompatActivity() {
 
         navController = this.findNavController(R.id.nav_host_fragment)
 
-        NavigationUI.setupActionBarWithNavController(this, navController,)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
 
         // return navController.navigateUp()
-        return navController.navigateUp(AppBarConfiguration(navController.graph))
+        // return navController.navigateUp(AppBarConfiguration(navController.graph))
+        return NavigationUI.navigateUp(navController, AppBarConfiguration(navController.graph))
 
-        // return super.onSupportNavigateUp()
     }
 }

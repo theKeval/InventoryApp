@@ -26,7 +26,7 @@ class InstructionsFragment: Fragment() {
 
         // name = arguments?.get("args_name").toString()
         args = InstructionsFragmentArgs.fromBundle(requireArguments())
-        name = args.argsName
+        name = if(args.argsName.isBlank()) "Guest" else args.argsName
         binding.lableHelloInstructions.text = resources.getString(R.string.hello_instructions_text).plus(" $name,")
 
         binding.btnInstructionsNext.setOnClickListener {

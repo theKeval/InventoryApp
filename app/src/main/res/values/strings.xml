@@ -43,4 +43,5 @@
     <string name="error_saving">Unable to save Product :(</string>
     <string name="error_deleting">Unable to delete Product</string>
     <string name="btn_text_update">Update</string>
+    <string name="menu_title_logout">Logout</string>
 </resources>
