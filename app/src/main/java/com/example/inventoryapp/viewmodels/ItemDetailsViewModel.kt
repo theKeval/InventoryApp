@@ -7,7 +7,12 @@ import com.example.inventoryapp.models.ProductModel
 
 class ItemDetailsViewModel(val product: ProductModel) : ViewModel() {
 
-    fun saveProduct(homeVm: HomeViewModel, product: ProductModel): Boolean {
+    fun saveOrUpdateProduct(homeVm: HomeViewModel, product: ProductModel): Boolean {
+        val item = homeVm.products.value?.find { it.itemName.equals(product.itemName) }
+        if(item != null) {
+            homeVm.products.value?.remove(item)
+        }
+
         homeVm.products.value?.add(product)
 
         return true

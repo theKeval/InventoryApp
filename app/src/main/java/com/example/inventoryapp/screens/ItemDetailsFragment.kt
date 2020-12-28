@@ -1,18 +1,14 @@
 package com.example.inventoryapp.screens
 
 import android.annotation.SuppressLint
-import android.opengl.Visibility
 import android.os.Bundle
-import android.text.Editable
 import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.inventoryapp.R
@@ -53,7 +49,7 @@ class ItemDetailsFragment : Fragment() {
             )
         }
         binding.btnProductDetailSave.setOnClickListener {
-            if (viewModel.saveProduct(
+            if (viewModel.saveOrUpdateProduct(
                     homeViewModel,
                     ProductModel(
                         binding.fieldProductDetailName.text.toString(),
@@ -96,7 +92,7 @@ class ItemDetailsFragment : Fragment() {
 
 //        viewModel.savingProduct.observe(viewLifecycleOwner, Observer { saving ->
 //            if (saving) {
-//                viewModel.saveProduct(homeViewModel)
+//                viewModel.saveOrUpdateProduct(homeViewModel)
 //                viewModel.savingProductComplete()
 //            }
 //        })
@@ -116,6 +112,8 @@ class ItemDetailsFragment : Fragment() {
             binding.btnProductDetailSave.text = getString(R.string.btn_text_save)
             binding.btnProductDetailDelete.visibility = View.GONE
         } else {
+            binding.fieldProductDetailName.isEnabled = false
+            binding.textDisabled.visibility = View.VISIBLE
             binding.btnProductDetailSave.text = getString(R.string.btn_text_update)
             binding.btnProductDetailDelete.visibility = View.VISIBLE
         }

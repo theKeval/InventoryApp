@@ -44,4 +44,8 @@
     <string name="error_deleting">Unable to delete Product</string>
     <string name="btn_text_update">Update</string>
     <string name="menu_title_logout">Logout</string>
+    <string name="label_product_company">Product Company</string>
+    <string name="label_product_category">Product Category</string>
+    <string name="label_product_description">Product Description</string>
+    <string name="text_disabled">Product Name is not Editable</string>
 </resources>
