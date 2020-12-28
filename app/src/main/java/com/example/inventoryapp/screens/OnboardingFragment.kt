@@ -10,9 +10,9 @@ import androidx.navigation.findNavController
 import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.FragmentOnboardingBinding
 
-class OnboardingFragment: Fragment() {
+class OnboardingFragment : Fragment() {
 
-    private lateinit var binding:FragmentOnboardingBinding
+    private lateinit var binding: FragmentOnboardingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +22,9 @@ class OnboardingFragment: Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_onboarding, container, false)
         binding.btnNext.setOnClickListener {
-            it.findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToInstructionsFragment(binding.fieldName.text.toString()))
+            it.findNavController().navigate(
+                OnboardingFragmentDirections.actionOnboardingFragmentToInstructionsFragment(binding.fieldName.text.toString())
+            )
         }
 
         return binding.root

@@ -140,8 +140,8 @@ class ItemListingFragment : Fragment() {
     }
 
     private fun logout() {
-        // val done = findNavController().popBackStack(R.id.loginFragment, false)
-        val done = findNavController().navigate(ItemListingFragmentDirections.actionItemListingFragmentToLoginFragment())
+        val done =
+            findNavController().navigate(ItemListingFragmentDirections.actionItemListingFragmentToLoginFragment())
 
         Timber.i("logout done?: $done")
     }

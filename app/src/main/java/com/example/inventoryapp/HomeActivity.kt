@@ -16,13 +16,12 @@ import com.example.inventoryapp.viewmodels.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityHomeBinding
+    private lateinit var binding: ActivityHomeBinding
     private lateinit var navController: NavController
     lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_home)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -30,19 +29,26 @@ class HomeActivity : AppCompatActivity() {
         navController = this.findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+        // region commented code for future reference
+
+//        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
 //            if(nd.id == nc.graph.startDestination) {
 //
 //            }
-        }
+//        }
+
+        // endregion
 
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, AppBarConfiguration(navController.graph))
+
+        // region I'm just keeping this commented code to understand other ways we can implement
 
         // return navController.navigateUp()
         // return navController.navigateUp(AppBarConfiguration(navController.graph))
-        return NavigationUI.navigateUp(navController, AppBarConfiguration(navController.graph))
 
+        // endregion
     }
 }

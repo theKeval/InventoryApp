@@ -19,6 +19,10 @@ class HomeViewModel : ViewModel() {
         _products.value?.add(product)
     }
 
+    fun removeProduct(product: ProductModel) {
+        _products.value?.remove(product)
+    }
+
     fun createDummyData() {
         val dummyData = ArrayList<ProductModel>()
         dummyData.add(ProductModel("shoes", "Nike", "footwear", "well known brand for apparel "))
@@ -28,7 +32,7 @@ class HomeViewModel : ViewModel() {
                 "Jeans",
                 "World-O-Jeans",
                 "bottom wear",
-                "most populat bottom wear"
+                "most popular bottom wear"
             )
         )
         dummyData.add(

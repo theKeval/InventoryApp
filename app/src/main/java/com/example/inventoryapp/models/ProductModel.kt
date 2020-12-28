@@ -32,7 +32,7 @@ class ProductModel(
         get() = _itemDescription
 
 
-    // region commented code
+    // region commented code for future references
 
 //    private val _itemName = MutableLiveData<String>()
 //    val itemName: LiveData<String>

@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.inventoryapp.viewmodels.ItemListingViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
+
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,10 +50,10 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
+            android:contentDescription="@string/add_product"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_input_add"
-            android:contentDescription="@string/add_product" />
+            app:srcCompat="@android:drawable/ic_input_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

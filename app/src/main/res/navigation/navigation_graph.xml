@@ -58,7 +58,7 @@
         <action
             android:id="@+id/action_itemListingFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/navigation_graph"/>
+            app:popUpTo="@id/navigation_graph" />
     </fragment>
     <fragment
         android:id="@+id/itemDetailFragment"

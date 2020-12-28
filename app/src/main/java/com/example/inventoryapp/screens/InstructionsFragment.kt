@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.FragmentInstructionsBinding
 
-class InstructionsFragment: Fragment() {
+class InstructionsFragment : Fragment() {
 
     private lateinit var binding: FragmentInstructionsBinding
     lateinit var args: InstructionsFragmentArgs
@@ -22,15 +22,17 @@ class InstructionsFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_instructions, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_instructions, container, false)
 
-        // name = arguments?.get("args_name").toString()
         args = InstructionsFragmentArgs.fromBundle(requireArguments())
-        name = if(args.argsName.isBlank()) "Guest" else args.argsName
-        binding.lableHelloInstructions.text = resources.getString(R.string.hello_instructions_text).plus(" $name,")
+        name = if (args.argsName.isBlank()) "Guest" else args.argsName
+        binding.lableHelloInstructions.text =
+            resources.getString(R.string.hello_instructions_text).plus(" $name,")
 
         binding.btnInstructionsNext.setOnClickListener {
-            it.findNavController().navigate(InstructionsFragmentDirections.actionInstructionsFragmentToItemListingFragment())
+            it.findNavController()
+                .navigate(InstructionsFragmentDirections.actionInstructionsFragmentToItemListingFragment())
         }
 
         return binding.root

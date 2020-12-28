@@ -9,17 +9,17 @@ class ItemDetailsViewModel(val product: ProductModel) : ViewModel() {
 
     fun saveOrUpdateProduct(homeVm: HomeViewModel, product: ProductModel): Boolean {
         val item = homeVm.products.value?.find { it.itemName.equals(product.itemName) }
-        if(item != null) {
-            homeVm.products.value?.remove(item)
+        if (item != null) {
+            homeVm.removeProduct(item)
         }
 
-        homeVm.products.value?.add(product)
+        homeVm.addProduct(product)
 
         return true
     }
 
     fun deleteProduct(homeVm: HomeViewModel): Boolean {
-        homeVm.products.value?.remove(product)
+        homeVm.removeProduct(product)
 
         return true
     }

@@ -24,11 +24,8 @@ class LoginFragment: Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.btnLogin.setOnClickListener {
             it.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOnboardingFragment())
-            // binding.fieldEmail.text = Editable.Factory().newEditable("")
-            // binding.fieldPassword.text = Editable.Factory().newEditable("")
         }
 
-        // return super.onCreateView(inflater, container, savedInstanceState)
         return binding.root
     }
 }

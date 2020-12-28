@@ -25,7 +25,6 @@ class ItemDetailsFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var selectedProduct: ProductModel
 
-    @SuppressLint("ShowToast")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,7 +63,7 @@ class ItemDetailsFragment : Fragment() {
                     AppBarConfiguration(navGraph = it.findNavController().graph)
                 )
             } else {
-                Toast.makeText(context, getString(R.string.error_saving), Toast.LENGTH_LONG)
+                Toast.makeText(context, getString(R.string.error_saving), Toast.LENGTH_LONG).show()
             }
         }
         binding.btnProductDetailDelete.setOnClickListener {
@@ -75,6 +74,7 @@ class ItemDetailsFragment : Fragment() {
                 )
             } else {
                 Toast.makeText(context, getString(R.string.error_deleting), Toast.LENGTH_LONG)
+                    .show()
             }
         }
 
