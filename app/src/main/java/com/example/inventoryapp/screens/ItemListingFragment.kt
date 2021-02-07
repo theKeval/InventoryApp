@@ -19,8 +19,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.inventoryapp.R
+import com.example.inventoryapp.database.ProductDatabase
+import com.example.inventoryapp.database.ProductTable
 import com.example.inventoryapp.databinding.FragmentItemListingBinding
 import com.example.inventoryapp.models.ProductModel
+import com.example.inventoryapp.viewmodelfactory.ItemListingViewModelFactory
 import com.example.inventoryapp.viewmodels.HomeViewModel
 import com.example.inventoryapp.viewmodels.ItemListingViewModel
 import timber.log.Timber
@@ -39,24 +42,38 @@ class ItemListingFragment : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_item_listing, container, false)
-        viewModel = ViewModelProvider(this).get(ItemListingViewModel::class.java)
-        homeViewModel = activityViewModels<HomeViewModel>().value
 
-        homeViewModel.products.observe(viewLifecycleOwner, Observer { productList ->
-            val isEmpty = productList.isEmpty()
+        // getting the Dao
+        val application = requireNotNull(this.activity).application
+        val dao = ProductDatabase.getInstance(application).productDatabaseDao
+
+        val factory = ItemListingViewModelFactory(dao)
+        viewModel = ViewModelProvider(this, factory).get(ItemListingViewModel::class.java)
+
+        viewModel.products.observe(viewLifecycleOwner, Observer {
+            val isEmpty = it.isEmpty()
             updateVisibilityUI(isEmpty)
-            if (!isEmpty) {
-                for (product in productList) {
+            if(!isEmpty) {
+                for (product in it){
                     addProductUI(product)
                 }
             }
         })
 
+        homeViewModel = activityViewModels<HomeViewModel>().value
+//        homeViewModel.products.observe(viewLifecycleOwner, Observer { productList ->
+//            val isEmpty = productList.isEmpty()
+//            updateVisibilityUI(isEmpty)
+//            if (!isEmpty) {
+//                for (product in productList) {
+//                    addProductUI(product)
+//                }
+//            }
+//        })
+
         binding.fab.setOnClickListener {
             it.findNavController().navigate(
-                ItemListingFragmentDirections.actionItemListingFragmentToItemDetailFragment(
-                    ProductModel("", "", "", "")
-                )
+                ItemListingFragmentDirections.actionItemListingFragmentToItemDetailFragment(0L)
             )
         }
 
@@ -75,7 +92,7 @@ class ItemListingFragment : Fragment() {
         // endregion
     }
 
-    private fun addProductUI(product: ProductModel) {
+    private fun addProductUI(product: ProductTable) {
 
         val linearLayout =
             LinearLayout(ContextThemeWrapper(context, R.style.linearLayout_products_style))
@@ -87,24 +104,24 @@ class ItemListingFragment : Fragment() {
         layoutParams.setMargins(16)
         linearLayout.setOnClickListener {
             it.findNavController().navigate(
-                ItemListingFragmentDirections.actionItemListingFragmentToItemDetailFragment(product)
+                ItemListingFragmentDirections.actionItemListingFragmentToItemDetailFragment(product.productId)
             )
         }
 
         val name_textView = TextView(context)
-        name_textView.text = "Product Name: ${product.itemName}"
+        name_textView.text = "Product Name: ${product.name}"
         TextViewCompat.setTextAppearance(name_textView, R.style.label_style_productListing)
 
         val company_textView = TextView(context)
-        company_textView.text = "Company: ${product.itemCompany}"
+        company_textView.text = "Company: ${product.company}"
         TextViewCompat.setTextAppearance(company_textView, R.style.label_style_productListing)
 
         val category_textView = TextView(context)
-        category_textView.text = "Category: ${product.itemCategory}"
+        category_textView.text = "Category: ${product.category}"
         TextViewCompat.setTextAppearance(category_textView, R.style.label_style_productListing)
 
         val description_textView = TextView(context)
-        description_textView.text = "Description: ${product.itemDescription}"
+        description_textView.text = "Description: ${product.description}"
         TextViewCompat.setTextAppearance(description_textView, R.style.label_style_productListing)
 
         linearLayout.addView(name_textView)

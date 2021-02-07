@@ -50,7 +50,7 @@
                         android:ems="10"
                         android:hint="@string/hint_product_name"
                         android:inputType="textPersonName"
-                        android:text="@{itemDetailViewModel.product.itemName}" />
+                        android:text="@{itemDetailViewModel.product.name}" />
 
                 </LinearLayout>
 
@@ -88,7 +88,7 @@
                         android:ems="10"
                         android:hint="@string/hint_product_company"
                         android:inputType="textPersonName"
-                        android:text="@{itemDetailViewModel.product.itemCompany}" />
+                        android:text="@{itemDetailViewModel.product.company}" />
 
                 </LinearLayout>
 
@@ -117,7 +117,7 @@
                         android:ems="10"
                         android:hint="@string/hint_product_category"
                         android:inputType="textPersonName"
-                        android:text="@{itemDetailViewModel.product.itemCategory}" />
+                        android:text="@{itemDetailViewModel.product.category}" />
 
                 </LinearLayout>
 
@@ -146,7 +146,7 @@
                         android:ems="10"
                         android:hint="@string/hint_product_description"
                         android:inputType="textMultiLine"
-                        android:text="@{itemDetailViewModel.product.itemDescription}" />
+                        android:text="@{itemDetailViewModel.product.description}" />
 
                 </LinearLayout>
 

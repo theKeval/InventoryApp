@@ -65,7 +65,7 @@
         android:name="com.example.inventoryapp.screens.ItemDetailsFragment"
         android:label="Product Detail">
         <argument
-            android:name="product_model"
-            app:argType="com.example.inventoryapp.models.ProductModel" />
+            android:name="productId"
+            app:argType="long" />
     </fragment>
 </navigation>

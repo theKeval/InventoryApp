@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.inventoryapp.R
+import com.example.inventoryapp.database.ProductDatabase
 import com.example.inventoryapp.databinding.FragmentItemDetailsBinding
 import com.example.inventoryapp.models.ProductModel
 import com.example.inventoryapp.viewmodelfactory.ItemDetailViewModelFactory
@@ -33,10 +34,15 @@ class ItemDetailsFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_item_details, container, false)
 
-        selectedProduct = ItemDetailsFragmentArgs.fromBundle(arguments ?: Bundle()).productModel
+        val productId: Long = ItemDetailsFragmentArgs.fromBundle(arguments ?: Bundle()).productId
 
-        val factory = ItemDetailViewModelFactory(selectedProduct)
+        val application = requireNotNull(this.activity).application
+        val dao = ProductDatabase.getInstance(application).productDatabaseDao
+
+        val factory = ItemDetailViewModelFactory(dao, productId)
         viewModel = ViewModelProvider(this, factory).get(ItemDetailsViewModel::class.java)
+
+
         homeViewModel = activityViewModels<HomeViewModel>().value
 
         binding.itemDetailViewModel = viewModel

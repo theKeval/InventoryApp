@@ -17,12 +17,12 @@ interface ProductDao  {
     suspend fun update(product: ProductTable)
 
     @Query("DELETE FROM products WHERE productId == :id")
-    suspend fun deleteProduct(id: Int)
+    suspend fun deleteProduct(id: Double)
 
     @Query("SELECT * FROM products ORDER BY productId DESC")
     fun getProducts(): LiveData<List<ProductTable>>
 
     @Query("SELECT * FROM products WHERE productId == :id")
-    suspend fun getProduct(id: Int): ProductTable
+    suspend fun getProduct(id: Long): ProductTable
 
 }
