@@ -1,5 +1,7 @@
 package com.example.inventoryapp.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.inventoryapp.database.ProductDao
@@ -8,12 +10,14 @@ import kotlinx.coroutines.launch
 
 class ItemDetailsViewModel(private val dao: ProductDao, val productId: Long) : ViewModel() {
 
-    var product: ProductTable = ProductTable(0L, "", "", "", "")
+    private var _product = MutableLiveData<ProductTable>()
+    val product: LiveData<ProductTable>
+        get() = _product
 
     init {
         viewModelScope.launch {
             if(productId != 0L) {
-                product = getSelectedProduct(productId)
+                _product.value = getSelectedProduct(productId)
             }
         }
     }

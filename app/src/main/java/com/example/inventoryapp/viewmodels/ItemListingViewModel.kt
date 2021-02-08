@@ -1,11 +1,15 @@
 package com.example.inventoryapp.viewmodels
 
 import androidx.lifecycle.*
-import com.example.inventoryapp.HomeActivity
 import com.example.inventoryapp.database.ProductDao
 import com.example.inventoryapp.database.ProductTable
+import kotlinx.coroutines.launch
 
-class ItemListingViewModel(dao: ProductDao): ViewModel() {
+class ItemListingViewModel(private val dao: ProductDao): ViewModel() {
+
+    val products = dao.getProducts()
+
+    // region commented efforts
 
 //    private var _products = MutableLiveData<List<ProductTable>>()
 //    val products: LiveData<List<ProductTable>>
@@ -18,9 +22,21 @@ class ItemListingViewModel(dao: ProductDao): ViewModel() {
 //        }
 //    }
 
-    private val _products = dao.getProducts()
-    val products = Transformations.map(_products) {
-        it
-    }
+
+//    private var _products = MutableLiveData<List<ProductTable>>()
+//    val products: LiveData<List<ProductTable>>
+//        get() = _products
+//
+//    init {
+//        viewModelScope.launch {
+//            _products = MutableLiveData(getProducts())
+//        }
+//    }
+//
+//    private suspend fun getProducts(): List<ProductTable> {
+//        return dao.getProducts()
+//    }
+
+    // endregion
 
 }

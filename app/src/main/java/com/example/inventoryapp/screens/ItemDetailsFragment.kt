@@ -43,6 +43,7 @@ class ItemDetailsFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(ItemDetailsViewModel::class.java)
 
         binding.itemDetailViewModel = viewModel
+        binding.lifecycleOwner = this
 
 
         // Click listeners
