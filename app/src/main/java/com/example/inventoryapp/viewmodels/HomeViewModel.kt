@@ -7,21 +7,21 @@ import com.example.inventoryapp.models.ProductModel
 
 class HomeViewModel : ViewModel() {
 
-    private val _products = MutableLiveData<ArrayList<ProductModel>>()
-    val products: LiveData<ArrayList<ProductModel>>
-        get() = _products
-
-    init {
-        _products.value = ArrayList()
-    }
-
-    fun addProduct(product: ProductModel) {
-        _products.value?.add(product)
-    }
-
-    fun removeProduct(product: ProductModel) {
-        _products.value?.remove(product)
-    }
+//    private val _products = MutableLiveData<ArrayList<ProductModel>>()
+//    val products: LiveData<ArrayList<ProductModel>>
+//        get() = _products
+//
+//    init {
+//        _products.value = ArrayList()
+//    }
+//
+//    fun addProduct(product: ProductModel) {
+//        _products.value?.add(product)
+//    }
+//
+//    fun removeProduct(product: ProductModel) {
+//        _products.value?.remove(product)
+//    }
 
     fun createDummyData() {
         val dummyData = ArrayList<ProductModel>()
@@ -130,7 +130,7 @@ class HomeViewModel : ViewModel() {
             )
         )
 
-        _products.value?.addAll(dummyData)
+        // _products.value?.addAll(dummyData)
     }
 
     override fun onCleared() {

@@ -8,7 +8,7 @@ import androidx.room.Update
 import com.example.inventoryapp.database.ProductTable
 
 @Dao
-interface ProductDao  {
+interface ProductDao {
 
     @Insert
     suspend fun insert(product: ProductTable)
@@ -17,7 +17,7 @@ interface ProductDao  {
     suspend fun update(product: ProductTable)
 
     @Query("DELETE FROM products WHERE productId == :id")
-    suspend fun deleteProduct(id: Double)
+    suspend fun deleteProduct(id: Long)
 
     @Query("SELECT * FROM products ORDER BY productId DESC")
     fun getProducts(): LiveData<List<ProductTable>>

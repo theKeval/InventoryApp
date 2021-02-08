@@ -32,7 +32,6 @@ class ItemListingFragment : Fragment() {
 
     private lateinit var binding: FragmentItemListingBinding
     private lateinit var viewModel: ItemListingViewModel
-    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,17 +59,6 @@ class ItemListingFragment : Fragment() {
             }
         })
 
-        homeViewModel = activityViewModels<HomeViewModel>().value
-//        homeViewModel.products.observe(viewLifecycleOwner, Observer { productList ->
-//            val isEmpty = productList.isEmpty()
-//            updateVisibilityUI(isEmpty)
-//            if (!isEmpty) {
-//                for (product in productList) {
-//                    addProductUI(product)
-//                }
-//            }
-//        })
-
         binding.fab.setOnClickListener {
             it.findNavController().navigate(
                 ItemListingFragmentDirections.actionItemListingFragmentToItemDetailFragment(0L)
@@ -80,16 +68,6 @@ class ItemListingFragment : Fragment() {
         setHasOptionsMenu(true)
         return binding.root
 
-        // region commented code for future references
-
-        // homeViewModel.createDummyData()
-
-//        AppBarConfiguration.OnNavigateUpListener {
-//            activity?.finish()
-//            true
-//        }
-
-        // endregion
     }
 
     private fun addProductUI(product: ProductTable) {

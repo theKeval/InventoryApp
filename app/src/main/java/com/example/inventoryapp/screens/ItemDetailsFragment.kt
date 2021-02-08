@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.inventoryapp.R
 import com.example.inventoryapp.database.ProductDatabase
+import com.example.inventoryapp.database.ProductTable
 import com.example.inventoryapp.databinding.FragmentItemDetailsBinding
 import com.example.inventoryapp.models.ProductModel
 import com.example.inventoryapp.viewmodelfactory.ItemDetailViewModelFactory
@@ -23,8 +24,7 @@ class ItemDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentItemDetailsBinding
     private lateinit var viewModel: ItemDetailsViewModel
-    private lateinit var homeViewModel: HomeViewModel
-    private lateinit var selectedProduct: ProductModel
+    private var productId: Long = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +34,7 @@ class ItemDetailsFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_item_details, container, false)
 
-        val productId: Long = ItemDetailsFragmentArgs.fromBundle(arguments ?: Bundle()).productId
+        productId = ItemDetailsFragmentArgs.fromBundle(arguments ?: Bundle()).productId
 
         val application = requireNotNull(this.activity).application
         val dao = ProductDatabase.getInstance(application).productDatabaseDao
@@ -42,38 +42,55 @@ class ItemDetailsFragment : Fragment() {
         val factory = ItemDetailViewModelFactory(dao, productId)
         viewModel = ViewModelProvider(this, factory).get(ItemDetailsViewModel::class.java)
 
-
-        homeViewModel = activityViewModels<HomeViewModel>().value
-
         binding.itemDetailViewModel = viewModel
 
+
+        // Click listeners
         binding.btnProductDetailCancel.setOnClickListener {
             NavigationUI.navigateUp(
                 it.findNavController(),
                 AppBarConfiguration(navGraph = it.findNavController().graph)
             )
         }
+
         binding.btnProductDetailSave.setOnClickListener {
-            if (viewModel.saveOrUpdateProduct(
-                    homeViewModel,
-                    ProductModel(
-                        binding.fieldProductDetailName.text.toString(),
-                        binding.fieldProductDetailCompany.text.toString(),
-                        binding.fieldProductDetailCategory.text.toString(),
-                        binding.fieldProductDetailDescription.text.toString()
+            val prod = ProductTable(
+                0L,
+                binding.fieldProductDetailName.text.toString(),
+                binding.fieldProductDetailCompany.text.toString(),
+                binding.fieldProductDetailCategory.text.toString(),
+                binding.fieldProductDetailDescription.text.toString()
+            )
+
+            if (productId == 0L) {
+                // save product
+                if (viewModel.saveProduct(prod)) {
+                    NavigationUI.navigateUp(
+                        it.findNavController(),
+                        AppBarConfiguration(navGraph = it.findNavController().graph)
                     )
-                )
-            ) {
-                NavigationUI.navigateUp(
-                    it.findNavController(),
-                    AppBarConfiguration(navGraph = it.findNavController().graph)
-                )
-            } else {
-                Toast.makeText(context, getString(R.string.error_saving), Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, getString(R.string.error_deleting), Toast.LENGTH_LONG)
+                        .show()
+                }
             }
+            // update product
+            else {
+                if (viewModel.updateProduct(prod)) {
+                    NavigationUI.navigateUp(
+                        it.findNavController(),
+                        AppBarConfiguration(navGraph = it.findNavController().graph)
+                    )
+                } else {
+                    Toast.makeText(context, getString(R.string.error_saving), Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
+
         }
+
         binding.btnProductDetailDelete.setOnClickListener {
-            if (viewModel.deleteProduct(homeViewModel)) {
+            if (viewModel.deleteProduct(productId)) {
                 NavigationUI.navigateUp(
                     it.findNavController(),
                     AppBarConfiguration(navGraph = it.findNavController().graph)
@@ -114,7 +131,7 @@ class ItemDetailsFragment : Fragment() {
     }
 
     private fun updateUI() {
-        if (selectedProduct.itemName.isEmpty()) {
+        if (productId == 0L) {
             binding.btnProductDetailSave.text = getString(R.string.btn_text_save)
             binding.btnProductDetailDelete.visibility = View.GONE
         } else {

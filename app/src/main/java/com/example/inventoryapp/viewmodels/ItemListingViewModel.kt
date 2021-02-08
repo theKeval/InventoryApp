@@ -1,16 +1,26 @@
 package com.example.inventoryapp.viewmodels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.example.inventoryapp.HomeActivity
 import com.example.inventoryapp.database.ProductDao
+import com.example.inventoryapp.database.ProductTable
 
-/**
- * Right now there is no use of ItemListingViewModel but for future enhancements
- * I'm keeping this viewModel as it is
- */
 class ItemListingViewModel(dao: ProductDao): ViewModel() {
 
-    public var products = dao.getProducts()
+//    private var _products = MutableLiveData<List<ProductTable>>()
+//    val products: LiveData<List<ProductTable>>
+//        get() = _products
+//
+//    init {
+//        val abc = dao.getProducts().value
+//        if(abc != null) {
+//            _products = MutableLiveData(requireNotNull(dao.getProducts().value))
+//        }
+//    }
+
+    private val _products = dao.getProducts()
+    val products = Transformations.map(_products) {
+        it
+    }
 
 }
