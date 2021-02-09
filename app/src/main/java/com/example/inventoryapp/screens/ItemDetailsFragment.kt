@@ -77,6 +77,7 @@ class ItemDetailsFragment : Fragment() {
             }
             // update product
             else {
+                prod.productId = productId
                 if (viewModel.updateProduct(prod)) {
                     NavigationUI.navigateUp(
                         it.findNavController(),
