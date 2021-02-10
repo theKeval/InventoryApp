@@ -17,9 +17,14 @@
     <LinearLayout
         android:id="@+id/ll_productListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:onClick="@{() -> productClickListener.onClick(product)}">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_regular"
+        android:layout_marginTop="@dimen/margin_regular"
+
+        android:layout_marginEnd="@dimen/margin_regular"
+        android:background="@color/cardview_light_background"
+        android:onClick="@{() -> productClickListener.onClick(product)}"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,19 +32,19 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: "
-                style="@style/label_style.productListing"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="product name by tools"
                 android:ellipsize="end"
-                style="@style/label_style.productListing"
-                android:text="@{product.name}"/>
+                android:text="@{product.name}"
+                tools:text="product name by tools" />
 
         </LinearLayout>
 
@@ -49,19 +54,19 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Company: "
-                style="@style/label_style.productListing"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="company name by tools"
                 android:ellipsize="end"
-                style="@style/label_style.productListing"
-                android:text="@{product.company}"/>
+                android:text="@{product.company}"
+                tools:text="company name by tools" />
 
         </LinearLayout>
 
@@ -71,19 +76,19 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Category: "
-                style="@style/label_style.productListing"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="category name by tools"
                 android:ellipsize="end"
-                style="@style/label_style.productListing"
-                android:text="@{product.category}"/>
+                android:text="@{product.category}"
+                tools:text="category name by tools" />
 
         </LinearLayout>
 
@@ -93,19 +98,19 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description: "
-                style="@style/label_style.productListing"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                style="@style/label_style.productListing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="product description by tools"
                 android:ellipsize="end"
-                style="@style/label_style.productListing"
-                android:text="@{product.description}"/>
+                android:text="@{product.description}"
+                tools:text="product description by tools" />
 
         </LinearLayout>
 

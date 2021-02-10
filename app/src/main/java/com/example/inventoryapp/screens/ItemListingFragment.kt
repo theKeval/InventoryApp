@@ -19,6 +19,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.inventoryapp.R
+import com.example.inventoryapp.adapters.DataItem
+import com.example.inventoryapp.adapters.ProductClickListener
+import com.example.inventoryapp.adapters.ProductListAdapter
 import com.example.inventoryapp.database.ProductDatabase
 import com.example.inventoryapp.database.ProductTable
 import com.example.inventoryapp.databinding.FragmentItemListingBinding
@@ -52,14 +55,28 @@ class ItemListingFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        val adapter = ProductListAdapter(ProductClickListener { productId ->
+            viewModel.onProductClicked(productId)
+        })
 
-        viewModel.products.observe(viewLifecycleOwner, Observer {
-            val isEmpty = it.isEmpty()
+        binding.rvProductList.adapter = adapter
+
+        viewModel.products.observe(viewLifecycleOwner, Observer { productList ->
+            val isEmpty = productList.isEmpty()
             updateVisibilityUI(isEmpty)
-            if(!isEmpty) {
-                for (product in it){
-                    addProductUI(product)
-                }
+            if (!isEmpty) {
+                adapter.submitList(productList.map {
+                    DataItem.ProductItem(it)
+                })
+            }
+        })
+
+        viewModel.selectedProductId.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(
+                    ItemListingFragmentDirections.actionItemListingFragmentToItemDetailFragment(it)
+                )
+                viewModel.onProductDetailNavigated()
             }
         })
 
@@ -74,54 +91,13 @@ class ItemListingFragment : Fragment() {
 
     }
 
-    private fun addProductUI(product: ProductTable) {
-
-        val linearLayout =
-            LinearLayout(ContextThemeWrapper(context, R.style.linearLayout_products_style))
-        linearLayout.orientation = LinearLayout.VERTICAL
-        val layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        layoutParams.setMargins(16)
-        linearLayout.setOnClickListener {
-            it.findNavController().navigate(
-                ItemListingFragmentDirections.actionItemListingFragmentToItemDetailFragment(product.productId)
-            )
-        }
-
-        val name_textView = TextView(context)
-        name_textView.text = "Product Name: ${product.name}"
-        TextViewCompat.setTextAppearance(name_textView, R.style.label_style_productListing)
-
-        val company_textView = TextView(context)
-        company_textView.text = "Company: ${product.company}"
-        TextViewCompat.setTextAppearance(company_textView, R.style.label_style_productListing)
-
-        val category_textView = TextView(context)
-        category_textView.text = "Category: ${product.category}"
-        TextViewCompat.setTextAppearance(category_textView, R.style.label_style_productListing)
-
-        val description_textView = TextView(context)
-        description_textView.text = "Description: ${product.description}"
-        TextViewCompat.setTextAppearance(description_textView, R.style.label_style_productListing)
-
-        linearLayout.addView(name_textView)
-        linearLayout.addView(company_textView)
-        linearLayout.addView(category_textView)
-        linearLayout.addView(description_textView)
-
-        binding.itemsLayout.addView(linearLayout, layoutParams)
-
-    }
-
     private fun updateVisibilityUI(noProducts: Boolean) {
         if (noProducts) {
             binding.labelNoItem.visibility = View.VISIBLE
-            binding.itemsScrollview.visibility = View.GONE
+            binding.rvProductList.visibility = View.GONE
         } else {
             binding.labelNoItem.visibility = View.GONE
-            binding.itemsScrollview.visibility = View.VISIBLE
+            binding.rvProductList.visibility = View.VISIBLE
         }
     }
 

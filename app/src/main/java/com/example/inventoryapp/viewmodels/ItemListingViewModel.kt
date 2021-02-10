@@ -9,6 +9,18 @@ class ItemListingViewModel(private val dao: ProductDao): ViewModel() {
 
     val products = dao.getProducts()
 
+    private var _selectedProductId = MutableLiveData<Long>()
+    val selectedProductId: LiveData<Long>
+        get() = _selectedProductId
+
+    fun onProductClicked(productId: Long) {
+        _selectedProductId.value = productId
+    }
+
+    fun onProductDetailNavigated() {
+        _selectedProductId.value = null
+    }
+
     // region commented efforts
 
 //    private var _products = MutableLiveData<List<ProductTable>>()
