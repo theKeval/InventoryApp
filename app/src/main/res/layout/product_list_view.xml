@@ -8,13 +8,18 @@
         <variable
             name="product"
             type="com.example.inventoryapp.database.ProductTable" />
+
+        <variable
+            name="productClickListener"
+            type="com.example.inventoryapp.adapters.ProductClickListener" />
     </data>
 
     <LinearLayout
         android:id="@+id/ll_productListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{() -> productClickListener.onClick(product)}">
 
         <LinearLayout
             android:layout_width="match_parent"

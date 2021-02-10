@@ -49,6 +49,10 @@ class ItemListingFragment : Fragment() {
         val factory = ItemListingViewModelFactory(dao)
         viewModel = ViewModelProvider(this, factory).get(ItemListingViewModel::class.java)
 
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+
         viewModel.products.observe(viewLifecycleOwner, Observer {
             val isEmpty = it.isEmpty()
             updateVisibilityUI(isEmpty)
